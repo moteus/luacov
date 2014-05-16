@@ -1,5 +1,5 @@
 function test1()
-    local thing = nil -- @LUACOV_TEST MISSED
+    local thing = nil -- @LUACOV_TEST MISSED|HIT
     print("test1")
 end
 test1()
@@ -92,9 +92,9 @@ test9()
 
 function test10()
     local s = {
-        a = 1; -- @LUACOV_TEST HIT
-        b = 2, -- @LUACOV_TEST HIT
-        c = 3  -- @LUACOV_TEST HIT
+        a = 1; -- @LUACOV_TEST HIT|EMPTY
+        b = 2, -- @LUACOV_TEST HIT|EMPTY
+        c = 3  -- @LUACOV_TEST HIT|EMPTY
     }
 
     print("test10")

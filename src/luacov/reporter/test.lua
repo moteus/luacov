@@ -6,6 +6,11 @@ local ReporterBase = luacov_reporter.ReporterBase
 local TestReporter = setmetatable({}, ReporterBase) do
 TestReporter.__index = TestReporter
 
+local function debug_print(o, ...)
+   if not o._debug then return end
+   io.stdout:write(...)
+end
+
 function TestReporter:pass(filename, lineno, line)
    self._pass = self._pass + 1
 end
@@ -15,13 +20,14 @@ function TestReporter:fail(filename, lineno, line)
 end
 
 local function match_test(line)
-   return (line:match("%-%-%s+@LUACOV_TEST (%a+)%s*$"))
+   return (line:match("%-%-%s+@LUACOV_TEST (%S+)%s*$"))
 end
 
 function TestReporter:test(cond, filename, lineno, line)
    local pat = match_test(line)
    if not pat then return end
-   if pat == cond then return self:pass(filename, lineno, line) end
+   local find = not not string.find("|" .. pat .. "|", "|" .. cond .. "|", nil, true)
+   if find then return self:pass(filename, lineno, line) end
    self:fail(filename, lineno, line)
    print("  Fail - " .. lineno .. " - " .. line:gsub("^%s+", ""))
 end
