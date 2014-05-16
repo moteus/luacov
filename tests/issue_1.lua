@@ -45,7 +45,7 @@ end
 test5()
 
 function test6()
-	-- @LUACOV_TEST MISSED
+	-- @LUACOV_TEST EMPTY
 	if true then -- @LUACOV_TEST EMPTY
 	end -- @LUACOV_TEST EMPTY
 	print("test6")
@@ -92,9 +92,9 @@ test9()
 
 function test10()
     local s = {
-        a = 1; -- @LUACOV_TEST EMPTY
-        b = 2, -- @LUACOV_TEST EMPTY
-        c = 3  -- @LUACOV_TEST EMPTY
+        a = 1; -- @LUACOV_TEST HIT
+        b = 2, -- @LUACOV_TEST HIT
+        c = 3  -- @LUACOV_TEST HIT
     }
 
     print("test10")
@@ -103,7 +103,7 @@ test10()
 
 function test11()
     local function foo(f)
-        return 1, 2, function() -- @LUACOV_TEST EMPTY
+        return 1, 2, function() -- @LUACOV_TEST HIT
             a = a
         end
     end
