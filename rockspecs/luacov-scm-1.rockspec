@@ -26,6 +26,7 @@ build = {
     ["luacov"] = "src/luacov.lua",
     ["luacov.reporter"] = "src/luacov/reporter.lua",
     ["luacov.reporter.default"] = "src/luacov/reporter/default.lua",
+    ["luacov.reporter.test"] = "src/luacov/reporter/test.lua",
     ["luacov.runner"] = "src/luacov/runner.lua",
     ["luacov.stats"] = "src/luacov/stats.lua",
     ["luacov.tick"] = "src/luacov/tick.lua",

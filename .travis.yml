@@ -1,0 +1,31 @@
+language: erlang
+
+env:
+  global:
+    - PLATFORM=linux
+    - LUAROCKS_VER=2.1.0
+
+  matrix:
+    - LUA=lua5.1 LUA_SFX=
+    - LUA=lua5.2 LUA_SFX=
+    - LUA=luajit LUA_SFX=jit
+
+branches:
+  only:
+    - unit_test
+
+before_install:
+  - bash .travis/setup_lua.sh
+
+install:
+  - sudo luarocks make rockspecs/luacov-scm-1.rockspec
+
+script:
+  - cd tests
+  - lua$LUA_SFX -lluacov issue_1.lua
+  - luacov -r test
+
+notifications:
+  email:
+    on_success: change
+    on_failure: always

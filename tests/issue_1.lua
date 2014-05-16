@@ -1,5 +1,5 @@
 function test1()
-    local thing = nil -- MISSED BY LUACOV
+    local thing = nil -- @LUACOV_TEST MISSED
     print("test1")
 end
 test1()
@@ -10,20 +10,20 @@ function test2()
         b = { name = 'bob',
         },
         -- comment
-    }) -- MISSED BY LUACOV
+    }) -- @LUACOV_TEST EMPTY
     print("test2")
 end
 test2()
 
 function test3()
-    if true then -- MISSED BY LUACOV
+    if true then -- @LUACOV_TEST EMPTY
         print("test3")
     end
 end
 test3()
 
 function test4()
-    while true do -- MISSED BY LUACOV
+    while true do -- @LUACOV_TEST EMPTY
         print("test4")
         break
     end
@@ -39,15 +39,15 @@ function test5()
         },
         -- comment
     }
-    ) -- MISSED BY LUACOV
+    ) -- @LUACOV_TEST EMPTY
     print("test5")
 end
 test5()
 
 function test6()
-	-- MISSED BY LUACOV
-	if true then -- MISSED BY LUACOV
-	end -- MISSED BY LUACOV
+	-- @LUACOV_TEST MISSED
+	if true then -- @LUACOV_TEST EMPTY
+	end -- @LUACOV_TEST EMPTY
 	print("test6")
 end
 test6()
@@ -56,9 +56,9 @@ function test7()
     local a, b = 1,2
     if
         a < b
-    then -- MISSED BY LUACOV
+    then -- @LUACOV_TEST EMPTY
       a = b
-    end -- MISSED BY LUACOV
+    end -- @LUACOV_TEST EMPTY
     print("test7")
 end
 test7()
@@ -67,12 +67,12 @@ function test8()
     local a,b = 1,2
     if a < b then
       a = b
-    end; -- MISSED BY LUACOV
+    end; -- @LUACOV_TEST EMPTY
 
     local function foo(f) f() end
     foo(function()
       a = b
-    end) -- MISSED BY LUACOV
+    end) -- @LUACOV_TEST EMPTY
 
     print("test8")
 end
@@ -80,7 +80,7 @@ test8()
 
 function test9()
     local function foo(f)
-        return function() -- MISSED BY LUACOV
+        return function() -- @LUACOV_TEST EMPTY
             a = a
         end
     end
@@ -92,9 +92,9 @@ test9()
 
 function test10()
     local s = {
-        a = 1; -- MISSED BY LUACOV
-        b = 2, -- MISSED BY LUACOV
-        c = 3  -- MISSED BY LUACOV
+        a = 1; -- @LUACOV_TEST EMPTY
+        b = 2, -- @LUACOV_TEST EMPTY
+        c = 3  -- @LUACOV_TEST EMPTY
     }
 
     print("test10")
@@ -103,7 +103,7 @@ test10()
 
 function test11()
     local function foo(f)
-        return 1, 2, function() -- MISSED BY LUACOV
+        return 1, 2, function() -- @LUACOV_TEST EMPTY
             a = a
         end
     end
